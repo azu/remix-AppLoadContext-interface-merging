@@ -37,7 +37,7 @@ Found 1 error in app/routes/_index.tsx:25
 
 ## Workaround
 
-`import "@remix-run/server-runtime";` before extends `AppLoadContext` using declare merging.
+Add `import "@remix-run/server-runtime";` before extends `AppLoadContext` using declare merging.
 
 ```ts
 /// <reference types="@remix-run/dev" />
