@@ -15,10 +15,14 @@ export const loader = () => {
         }
     )
 }
+
+type Expect<A, E> = A extends E ? (E extends A ? true : false) : false;
+const assertType = <T extends true>() => undefined as unknown as T;
 export default function Index() {
     const { message } = useLoaderData<typeof loader>()
     //      ^? It will be string but SerializeForm<T> by declare mering in remix.env.d.ts
     console.log("message", message);
+    assertType<Expect<typeof message, string>>();
     return (
         <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
             <h1>Welcome to Remix</h1>
