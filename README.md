@@ -10,6 +10,22 @@ npm ci
 npm run typecheck
 ```
 
+Broken `remix.env.d.ts`
+
+```ts
+/// <reference types="@remix-run/dev" />
+/// <reference types="@remix-run/node" />
+// It breaks loader's return type
+declare module "@remix-run/server-runtime" {
+    export interface AppLoadContext {
+        env: {
+            SOME_SECRET: string;
+        };
+    }
+}
+```
+
+
 ```
 
 25     assertType<Expect<typeof message, string>>();
@@ -17,4 +33,22 @@ npm run typecheck
 
 
 Found 1 error in app/routes/_index.tsx:25
+```
+
+## Workaround
+
+`import "@remix-run/server-runtime";` before extends `AppLoadContext` using declare merging.
+
+```ts
+/// <reference types="@remix-run/dev" />
+/// <reference types="@remix-run/node" />
+import "@remix-run/server-runtime";
+declare module "@remix-run/server-runtime" {
+    export interface AppLoadContext {
+        env: {
+            SOME_SECRET: string;
+        };
+    }
+}
+
 ```

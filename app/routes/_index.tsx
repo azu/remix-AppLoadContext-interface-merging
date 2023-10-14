@@ -1,15 +1,7 @@
-import type { DataFunctionArgs, LoaderFunctionArgs, MetaFunction } from "@remix-run/node";
+import { json, LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
-import { json } from "@remix-run/node";
 
-export const meta: MetaFunction = ({ context }: LoaderFunctionArgs) => {
-    return [
-        { title: "New Remix App" },
-        { name: "description", content: "Welcome to Remix!" },
-    ];
-};
-
-export const loader = () => {
+export const loader = ({context}: LoaderFunctionArgs) => {
     return json({
             message: "Hello from loader!",
         }
