@@ -10,8 +10,7 @@ npm ci
 npm run typecheck
 ```
 
-Broken `remix.env.d.ts`
-
+Broken `remix.env.d.ts`:
 ```ts
 /// <reference types="@remix-run/dev" />
 /// <reference types="@remix-run/node" />
@@ -25,6 +24,7 @@ declare module "@remix-run/server-runtime" {
 }
 ```
 
+Probably, It does overwrite `AppLoadContext` instead of extends it.
 
 ```
 
